@@ -3,7 +3,7 @@ This software uses GIS mapping to show 20 hikes in the Idaho Falls area. It's de
 window will show the elevation gain and length of the hike. This will allow users to see where hikes are at near them and how long the hike is.
 
 Before this project, I had never touched GIS mapping or Kotlin before. The more I learned about it, the more intrigued I was by this software and I really
-wanted to figure it out and do a project with it. Figuring out the software took some effort as some of the recent changes to arcgis hasn't been 
+wanted to figure it out and do a project with it. Figuring out the software took some effort as some of the recent changes to ArcGIS hasn't been 
 documented yet, but in completing the project, it really helped me grow as a software engineer. I hope this project will help you learn a bit more
 as well about GIS mapping from this software.
 

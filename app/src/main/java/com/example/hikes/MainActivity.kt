@@ -1,5 +1,6 @@
 package com.example.hikes
 
+//import packages
 import android.annotation.SuppressLint
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,7 @@ import com.example.hikes.databinding.ActivityMainBinding
 import java.util.concurrent.ExecutionException
 import kotlin.math.roundToInt
 
-
+//main class inheriting from AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
     private var graphicsOverlay = GraphicsOverlay()
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun createHikeGraphics(): Array<Graphic> {
+        // create variables for hike points on map
         val hike1loc = Point(-111.9902778, 43.78555556, SpatialReferences.getWgs84())
         val hike2loc = Point(-111.7178538, 43.65749903, SpatialReferences.getWgs84())
         val hike3loc = Point(-111.584847,43.71025798, SpatialReferences.getWgs84())
@@ -86,8 +88,10 @@ class MainActivity : AppCompatActivity() {
         val hike19loc = Point(-114.479698, 42.59919, SpatialReferences.getWgs84())
         val hike20loc = Point(-111.6241667, 43.61111111, SpatialReferences.getWgs84())
 
+        //create marker
         val hikeMarker = SimpleMarkerSymbol(SimpleMarkerSymbol.Style.DIAMOND, Color.argb(255, 0, 0, 128), 10.0F)
 
+        //hashmaps to store hike attributes
         val rm: MutableMap<String, Any> = HashMap()
         rm["Name"] = "R Mountain"
         rm["Length"] = "3.4mi"
@@ -188,6 +192,7 @@ class MainActivity : AppCompatActivity() {
         ss["Length"] = "4.6mi"
         ss["Elevation"] = "793ft"
 
+        //create graphic and add to an array of graphics
         return arrayOf(
             Graphic(hike2loc, cc, hikeMarker),
             Graphic(hike1loc, rm, hikeMarker),
@@ -301,6 +306,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        //add hike names to map
         val rMountGraphic = Graphic(rMountLoc, rMountSymbol)
         val ccMountGraphic = Graphic(ccMountLoc, ccMountSymbol)
         val wdMountGraphic = Graphic(wdMountLoc, wdMountSymbol)
@@ -322,7 +328,7 @@ class MainActivity : AppCompatActivity() {
         val sfMountGraphic = Graphic(sfMountLoc, sfMountSymbol)
         val ssMountGraphic = Graphic(ssMountLoc, ssMountSymbol)
 
-        //return array
+        //add graphics to array and return it
         return arrayOf(rMountGraphic, ccMountGraphic, wdMountGraphic, kcMountGraphic
             ,plMountGraphic, upMountGraphic, lpMountGraphic, gbMountGraphic, hvMountGraphic
             ,mfMountGraphic, hlMountGraphic, wcMountGraphic, ecMountGraphic, lsMountGraphic
@@ -345,6 +351,7 @@ class MainActivity : AppCompatActivity() {
 
         mapView.onTouchListener = object : DefaultMapViewOnTouchListener(this, mapView) {
 
+            @SuppressLint("SetTextI18n")
             override fun onSingleTapConfirmed(motionEvent: MotionEvent): Boolean {
                 // get the point that was tapped on the screen
                 val screenPoint =
@@ -369,7 +376,7 @@ class MainActivity : AppCompatActivity() {
                                 setSingleLine(false)
                                 setLines(3)
                                 // display information about hike
-                                text = (graphic[1].attributes["Name"].toString() + "\n" + "Length: " + graphic[1].attributes["Length"].toString() + "\n" + "Elevation Gain: " + graphic[1].attributes["Elevation"].toString() + "\n");
+                                text = (graphic[1].attributes["Name"].toString() + "\n" + "Length: " + (graphic[1].attributes["Length"].toString()) + "\n" + "Elevation Gain: " + graphic[1].attributes["Elevation"].toString() + "\n")
                             }
 
                             // get the callout, set its content and show it and the tapped location
@@ -389,7 +396,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                return super.onSingleTapConfirmed(motionEvent);
+                return super.onSingleTapConfirmed(motionEvent)
             }
         }
     }
